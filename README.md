@@ -62,7 +62,21 @@ Publisher Subscriber Project**
         (iii)  ros2 run turtlesim turtle_teleop_key -> control turtle with arrows and other keyboard keys
         (iv)   ros2 topic echo /turtle1/pose        -> prints live coordinates of the turtle to the terminal
 
-        
+**7. Screenshots:**
+
+C++ rqt graph: 
+<img width="1920" height="1080" alt="cpp_cli" src="https://github.com/user-attachments/assets/90d28019-2ef6-46b7-88ad-3958fa9dfc46" />
+<img width="762" height="72" alt="ros_cpp" src="https://github.com/user-attachments/assets/0b33ad32-cbda-4332-ba67-82c12a2d6f4b" />
+
+Python rqt graph:
+<img width="1920" height="1080" alt="py_cli" src="https://github.com/user-attachments/assets/fc8b1596-9b99-4750-905d-da58be1029c4" />
+<img width="768" height="72" alt="rosgraph_py" src="https://github.com/user-attachments/assets/081e2f58-5792-42af-8859-6cb003624c1a" />
+
+turtlesim:
+<img width="1920" height="1080" alt="turtle" src="https://github.com/user-attachments/assets/92698da3-1783-436d-9128-4ce01c6cce66" />
+<img width="1138" height="181" alt="rosgraph_turtle" src="https://github.com/user-attachments/assets/eb816335-52f8-4c10-844e-2ab822b0b3b0" />
+
+
 
 **Conclusion:**
     This task really provided me the practical exposure to ROS2 humble fundas, specifically nodes, topics, package, workspace, and graphs.
