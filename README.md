@@ -46,11 +46,17 @@ Publisher Subscriber Project**
       
 **6. Other CLI commands used:**
     1. ros2 node list            -> to list the nodes active 
+    
     2. ros2 topic list           -> to list the topics active
+    
     3. ros2 topic echo /topic    -> to print real-time messages published (in C++)
+    
     4. ros2 topic echo /topic_py -> to print real-time messages published (in Python)
+    
     5. ros2 topic info /topic    -> to get specific details about the given topic
+    
     6. rqt_graph                 -> to visualize ROS graph
+    
     7. turtlesim commands:
         (i)    source /opt/ros/humble/setup.bash    -> sourcing
         (ii)   ros2 run turtlesim turtlesim_node    -> opens the turtle window
