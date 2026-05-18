@@ -14,6 +14,7 @@ Publisher Subscriber Project**
 **1. Workspace Creation:**
   Workspace is nothing but a folder to store our project.
   commands used:
+  
     1. mkdir                      -> to create directory
     2. cd                         -> to change directory
     3. colcon build               -> to build the workspace
@@ -22,6 +23,7 @@ Publisher Subscriber Project**
 **2. Package Creation:**
     It is the funda organizational unit used to bundle and distribute code. we used here for the C++ and Python nodes.
     commands used:
+    
       1. ros2 pkg create --build-type ament_cmake cpp_pubsub -- dependencies rclcpp std_msgs   -> for C++
       2. ros2 pkg create --build-type ament_python py_pubsub -- dependencies rclpy std_msgs    -> for Python
       
@@ -34,29 +36,26 @@ Publisher Subscriber Project**
 **4. Build Process:**
     Building the project (compiling and organizing).
     commands used:
+    
       1. colcon build
       2. source install/setup.bash
       
 **5. Running the nodes:**
     commands used:
+    
       1. ros2 run cpp_pubsub publisher
       2. ros2 run cpp_pubsub subscriber
       3. ros2 run py_pubsub publisher
       4. ros2 run py_pubsub subscriber
       
 **6. Other CLI commands used:**
+
     1. ros2 node list            -> to list the nodes active 
-    
     2. ros2 topic list           -> to list the topics active
-    
     3. ros2 topic echo /topic    -> to print real-time messages published (in C++)
-    
     4. ros2 topic echo /topic_py -> to print real-time messages published (in Python)
-    
     5. ros2 topic info /topic    -> to get specific details about the given topic
-    
     6. rqt_graph                 -> to visualize ROS graph
-    
     7. turtlesim commands:
         (i)    source /opt/ros/humble/setup.bash    -> sourcing
         (ii)   ros2 run turtlesim turtlesim_node    -> opens the turtle window
