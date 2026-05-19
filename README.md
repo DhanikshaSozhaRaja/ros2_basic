@@ -76,6 +76,9 @@ turtlesim:
 <img width="1920" height="1080" alt="turtle" src="https://github.com/user-attachments/assets/92698da3-1783-436d-9128-4ce01c6cce66" />
 <img width="1138" height="181" alt="rosgraph_turtle" src="https://github.com/user-attachments/assets/eb816335-52f8-4c10-844e-2ab822b0b3b0" />
 
+Extras(Service and Client):
+<img width="1920" height="1080" alt="sercli" src="https://github.com/user-attachments/assets/c665a6a8-b12f-4bac-b92b-7c90ac41a274" />
+
 **8. Extras(Service and client):**
 
     1. Service and Client:
@@ -86,9 +89,6 @@ turtlesim:
         1. Client  -> sends req
         2. Service -> processes the req and sends response
         3. Client  -> receives result
-    
-    >>> Code files have been attached. Output:
-    <img width="1920" height="1080" alt="sercli" src="https://github.com/user-attachments/assets/c665a6a8-b12f-4bac-b92b-7c90ac41a274" />
 
     2. Parameters:
       These are the values stored inside a node to control its behaviour.
