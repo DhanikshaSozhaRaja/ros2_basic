@@ -76,6 +76,27 @@ turtlesim:
 <img width="1920" height="1080" alt="turtle" src="https://github.com/user-attachments/assets/92698da3-1783-436d-9128-4ce01c6cce66" />
 <img width="1138" height="181" alt="rosgraph_turtle" src="https://github.com/user-attachments/assets/eb816335-52f8-4c10-844e-2ab822b0b3b0" />
 
+**8. Extras(Service and client):**
+
+    1. Service and Client:
+      A service is basically like a server. It is used when one node wants another node to do a specific task and send back a response.
+      A client node sends the request to the service.
+
+      work flow:
+        1. Client  -> sends req
+        2. Service -> processes the req and sends response
+        3. Client  -> receives result
+    
+    >>> Code files have been attached. Output:
+    <img width="1920" height="1080" alt="sercli" src="https://github.com/user-attachments/assets/c665a6a8-b12f-4bac-b92b-7c90ac41a274" />
+
+    2. Parameters:
+      These are the values stored inside a node to control its behaviour.
+      Eg.: Speed of the robot, name of the topic or the robot itself, and resolution of the camera.
+
+    3. Actions:
+      There are used for long-running tasks. They send feedback while running. 
+      Eg: Path planning, moving robot arm, and navigation.
 
 
 **Conclusion:**
