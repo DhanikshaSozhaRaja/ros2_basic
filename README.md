@@ -79,7 +79,7 @@ turtlesim:
 Extras(Service and Client):
 <img width="1920" height="1080" alt="sercli" src="https://github.com/user-attachments/assets/c665a6a8-b12f-4bac-b92b-7c90ac41a274" />
 
-**8. Extras(Service and client):**
+**8. Extras:**
 
     1. Service and Client:
       A service is basically like a server. It is used when one node wants another node to do a specific task and send back a response.
