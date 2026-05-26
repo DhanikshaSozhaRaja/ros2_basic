@@ -98,6 +98,87 @@ Extras(Service and Client):
       There are used for long-running tasks. They send feedback while running. 
       Eg: Path planning, moving robot arm, and navigation.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task-02:
+
+### 1. Custom Actions:
+
+Actions are used for long-running tasks where continuous feedback is needed.
+
+In this project:
+
+```
+- A custom action `ExecuteCircle.action` was created
+- Goal, Feedback, and Result were defined
+- Action Server and Client were implemented from scratch
+```
+
+---
+
+### 2. Circular Turtle Patrol:
+
+The turtle moves autonomously in a circular path using velocity commands.
+
+Formula used:
+
+```
+w = v / r
+```
+
+where:
+
+```
+v -> linear velocity
+w -> angular velocity
+r -> radius
+```
+
+---
+
+### 3. Feedback Handling:
+
+The Action Server continuously sends:
+
+```
+- distance travelled
+- current mission status
+```
+
+to the Action Client while the turtle is moving.
+
+---
+
+### 4. Boundary Collision Detection:
+
+The turtle position is continuously monitored.
+
+If the turtle approaches walls:
+
+```
+- mission gets aborted
+- turtle stops immediately
+- abort message is returned to client
+```
+
+---
+
+### 5. CLI Commands Used:
+
+```
+1. ros2 action list
+   -> lists active actions
+
+2. ros2 interface show turtle_patrol/action/ExecuteCircle
+   -> shows custom action structure
+
+3. ros2 topic echo /turtle1/pose
+   -> prints live turtle coordinates
+
+4. rqt_graph
+   -> visualizes ROS2 communication graph
+```
+
 
 **Conclusion:**
     This task really provided me the practical exposure to ROS2 humble fundas, specifically nodes, topics, package, workspace, and graphs.
