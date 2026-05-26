@@ -179,6 +179,118 @@ If the turtle approaches walls:
    -> visualizes ROS2 communication graph
 ```
 
+Part 2: Deep Dive into the Communication Layer
+
+A. ROS 1 vs ROS 2 Architectural Shift
+
+1. ROS 1 Master and SPOF
+
+ROS 1 uses a centralized component called the ROS Master ("roscore").
+It manages node registration, topic information, and node discovery.
+
+Steps:
+
+1. Nodes register with "roscore"
+2. Nodes get connection details from the Master
+3. Nodes communicate directly
+
+Problem
+
+The ROS Master is a Single Point of Failure (SPOF):
+
+- If "roscore" crashes, new nodes cannot communicate.
+- Discovery stops and the system becomes unstable.
+
+---
+
+2. Decentralized Architecture in ROS 2
+
+ROS 2 removes the ROS Master and uses DDS (Data Distribution Service).
+
+In ROS 2:
+
+- Nodes automatically discover each other
+- Communication is peer-to-peer
+- No centralized broker is needed
+
+Advantages
+
+- Better reliability
+- No single point of failure
+- Improved scalability
+- Suitable for real-time and multi-robot systems
+
+---
+
+3. ROS 1 vs ROS 2 Communication
+
+ROS 1
+
+Uses:
+
+- TCPROS → reliable but slower
+- UDPROS → faster but less reliable
+
+Nodes first contact the ROS Master before communicating.
+
+ROS 2
+
+Uses:
+
+- DDS Wire Protocol (RTPS)
+
+Features:
+
+- Automatic discovery
+- Direct peer-to-peer communication
+- QoS support
+- Better real-time performance
+
+---
+
+B. DDS (Data Distribution Service)
+
+DDS is the middleware used by ROS 2 for communication between nodes.
+
+---
+
+1. Discoverability Mechanism
+
+ROS 2 nodes on the same Wi-Fi network discover each other automatically using:
+
+- Simple Discovery Protocol (SDP)
+- Multicast UDP
+
+Process
+
+1. A node joins the network
+2. It sends multicast discovery messages
+3. Other nodes detect it
+4. Direct communication starts
+
+No central server is required.
+
+---
+
+2. DDS Vendors
+
+DDS Vendor| Middleware Package
+eProsima Fast DDS| "rmw_fastrtps_cpp"
+Eclipse Cyclone DDS| "rmw_cyclonedds_cpp"
+RTI Connext DDS| "rmw_connextdds"
+
+Environment Variable
+
+Used to switch DDS vendors:
+
+RMW_IMPLEMENTATION
+
+Example:
+
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+------------------------------------------
+
 
 **Conclusion:**
     This task really provided me the practical exposure to ROS2 humble fundas, specifically nodes, topics, package, workspace, and graphs.
