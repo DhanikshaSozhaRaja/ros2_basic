@@ -11,7 +11,7 @@
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <buildtool_depend>ament_python</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
 
   <depend>rclpy</depend>
@@ -23,5 +23,8 @@
 
   <member_of_group>rosidl_interface_packages</member_of_group>
 
-</package>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 
+</package>
