@@ -1,3 +1,281 @@
+## What I Learned
+
+This project provided practical experience in using the ROS 2 ecosystem. Starting from a basic robot model, I learned how different components of a robotic system work together to create a complete simulation environment.
+
+Throughout the development process, I gained knowledge in:
+
+- Building robot models using URDF and Xacro
+- Defining links, joints, and robot kinematics
+- Integrating sensors such as Camera, LiDAR, and IMU
+- Simulating robots in Gazebo Fortress (Ignition)
+- Visualizing robot states, TF frames, and sensor data in RViz2
+- Understanding ROS 2 topics, nodes, publishers, and subscribers
+- Configuring and managing controllers using ros2_control
+- Implementing differential drive motion control
+- Creating launch files for automated robot deployment
+- Debugging TF, sensor, controller, and simulation issues
+- Working with robot state publishers and joint state broadcasters
+
+I developed a deeper understanding of robot simulation workflows and the tools commonly used in modern robotics development. The project strengthened both my ROS 2 fundamentals and my ability to troubleshoot and integrate multiple robotic subsystems into a functional simulation.
+
+# ROS 2 Mobile Robot Simulation
+
+A custom mobile robot simulation developed using ROS 2 Humble and Gazebo Fortress (Ignition). This project demonstrates robot modeling, sensor integration, robot control, and visualization using modern ROS 2 tools.
+
+## Project Overview
+
+The robot consists of:
+
+- Differential drive mobile base
+- Two drive wheels and caster wheels
+- Single DOF robotic arm
+- RGB Camera
+- LiDAR sensor
+- IMU sensor
+- ROS 2 Control integration
+- RViz visualization
+- Gazebo simulation environment
+
+The goal of this project was to build a complete simulation stack from scratch, including robot modeling, controllers, sensors, and visualization.
+
+---
+
+## Features
+
+### Mobile Base
+- Differential drive locomotion
+- Velocity control using ROS 2 topics
+- Real-time simulation in Gazebo
+
+### Robotic Arm
+- Revolute joint arm mounted on the robot
+- Position controlled through ROS 2 controllers
+
+### Sensors
+- Camera sensor for image streaming
+- 360° LiDAR for environment perception
+- IMU for orientation and motion sensing
+
+### Visualization
+- Robot model visualization in RViz
+- TF tree visualization
+- LaserScan display
+- Camera image display
+
+### Control Framework
+- ros2_control integration
+- Controller Manager
+- Joint State Broadcaster
+- Diff Drive Controller
+- Arm Position Controller
+
+---
+
+## Technologies Used
+
+- ROS 2 Humble
+- Gazebo Fortress (Ignition Gazebo)
+- ros2_control
+- gz_ros2_control
+- RViz2
+- Xacro
+- URDF
+
+---
+
+## Project Structure
+
+```text
+robot_sim/
+│
+├── config/
+│   └── controllers.yaml
+│
+├── launch/
+│   └── spawn_robot.launch.py
+│
+├── urdf/
+│   ├── robot.urdf.xacro
+│   ├── wheels.xacro
+│   ├── arm.xacro
+│   └── sensors.xacro
+│
+├── worlds/
+│   └── custom_world.sdf
+│
+├── resource/
+│   └── robot_sim
+│
+├── package.xml
+└── setup.py
+```
+
+---
+
+## Installation
+
+Clone the repository into your ROS 2 workspace:
+
+```bash
+cd ~/robot_ws/src
+
+git clone <repository-url>
+
+cd ..
+```
+
+Build the workspace:
+
+```bash
+colcon build
+```
+
+Source the workspace:
+
+```bash
+source install/setup.bash
+```
+
+---
+
+## Running the Simulation
+
+Launch Gazebo and spawn the robot:
+
+```bash
+ros2 launch robot_sim spawn_robot.launch.py
+```
+
+---
+
+## Checking Controllers
+
+List active controllers:
+
+```bash
+ros2 control list_controllers
+```
+
+Expected controllers:
+
+```text
+joint_state_broadcaster
+diff_drive_controller
+arm_controller
+```
+
+---
+
+## Driving the Robot
+
+Move the robot forward:
+
+```bash
+ros2 topic pub /diff_drive_controller/cmd_vel_unstamped \
+geometry_msgs/msg/Twist \
+"{linear:{x:0.3},angular:{z:0.0}}" -r 10
+```
+
+Rotate the robot:
+
+```bash
+ros2 topic pub /diff_drive_controller/cmd_vel_unstamped \
+geometry_msgs/msg/Twist \
+"{linear:{x:0.0},angular:{z:0.5}}" -r 10
+```
+
+---
+
+## Controlling the Arm
+
+Move the arm joint:
+
+```bash
+ros2 topic pub /arm_controller/commands \
+std_msgs/msg/Float64MultiArray \
+"{data:[0.8]}"
+```
+
+---
+
+## Useful ROS 2 Commands
+
+### View Topics
+
+```bash
+ros2 topic list
+```
+
+### View TF Tree
+
+```bash
+ros2 run tf2_tools view_frames
+```
+
+### View Joint States
+
+```bash
+ros2 topic echo /joint_states
+```
+
+### View Hardware Interfaces
+
+```bash
+ros2 control list_hardware_interfaces
+```
+
+---
+
+## Sensor Topics
+
+| Sensor | Topic |
+|----------|---------|
+| Camera | `/camera` |
+| LiDAR | `/lidar` |
+| Point Cloud | `/lidar/points` |
+| IMU | `/imu` |
+| Joint States | `/joint_states` |
+
+---
+
+## Results
+
+The final simulation successfully demonstrates:
+
+- Mobile robot navigation
+- Differential drive control
+- Arm actuation
+- Camera image generation
+- LiDAR scanning
+- IMU sensing
+- TF tree generation
+- ROS 2 controller integration
+- RViz visualization
+
+---
+
+## Future Improvements
+
+- Autonomous navigation using Nav2
+- SLAM integration
+- Object detection using camera feed
+- Multi-joint robotic arm
+- MoveIt motion planning
+- Autonomous obstacle avoidance
+
+---
+
+<img width="1920" height="1080" alt="Screenshot from 2026-06-12 17-59-44" src="https://github.com/user-attachments/assets/0e18b33b-d424-450d-8d10-b72667c85c90" />
+<img width="1920" height="1080" alt="Screenshot from 2026-06-13 11-21-13" src="https://github.com/user-attachments/assets/27056d21-5e1a-4572-b650-c158c933bc75" />
+<img width="1694" height="387" alt="Screenshot from 2026-06-13 20-12-27" src="https://github.com/user-attachments/assets/690f01e4-76db-4121-8f95-662c1a1e4cb6" />
+<img width="1223" height="993" alt="Screenshot from 2026-06-13 20-12-10" src="https://github.com/user-attachments/assets/596876a4-85fa-45f7-84bc-4280a3a62feb" />
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 # Robot Simulation using ROS 2, RViz2 and Gazebo
 
 ## Project Overview
