@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+
+<robot name="robot_sim"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ================================================= -->
+  <!-- INCLUDE FILES                                     -->
+  <!-- ================================================= -->
+
+  <xacro:include filename="wheels.xacro"/>
+  <xacro:include filename="arm.xacro"/>
+  <xacro:include filename="sensors.xacro"/>
+
+  <!-- ================================================= -->
+  <!-- ROBOT PROPERTIES                                  -->
+  <!-- ================================================= -->
+
+  <xacro:property name="body_length" value="0.60"/>
+  <xacro:property name="body_width"  value="0.40"/>
+  <xacro:property name="body_height" value="0.15"/>
+
+  <!-- ================================================= -->
+  <!-- WORLD LINK                                        -->
+  <!-- ================================================= -->
+
+  <link name="world"/>
+
+  <joint name="world_to_base"
+         type="fixed">
+
+    <parent link="world"/>
+    <child link="base_link"/>
+
+    <origin xyz="0 0 0.30"
+            rpy="0 0 0"/>
+
+  </joint>
+
+  <!-- ================================================= -->
+  <!-- BASE LINK                                         -->
+  <!-- ================================================= -->
+
+  <link name="base_link">
+
+    <visual>
+
+      <geometry>
+        <box size="${body_length}
+                   ${body_width}
+                   ${body_height}"/>
+      </geometry>
+
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+        <box size="${body_length}
+                   ${body_width}
+                   ${body_height}"/>
+      </geometry>
+
+    </collision>
+
+    <inertial>
+
+      <mass value="5.0"/>
+
+      <origin xyz="0 0 0"/>
+
+      <inertia
+          ixx="0.10"
+          iyy="0.10"
+          izz="0.10"
+          ixy="0"
+          ixz="0"
+          iyz="0"/>
+
+    </inertial>
+
+  </link>
+
+  <!-- ================================================= -->
+  <!-- WHEELS                                            -->
+  <!-- ================================================= -->
+
+  <!-- LEFT DRIVE WHEEL -->
+
+  <xacro:wheel
+      name="left_wheel"
+      x="0"
+      y="0.235"
+      z="-0.10"
+      radius="0.08"
+      width="0.05"/>
+
+  <!-- RIGHT DRIVE WHEEL -->
+
+  <xacro:wheel
+      name="right_wheel"
+      x="0"
+      y="-0.235"
+      z="-0.10"
+      radius="0.08"
+      width="0.05"/>
+
+  <!-- FRONT CASTER -->
+
+  <xacro:wheel
+      name="front_caster"
+      x="0.25"
+      y="0"
+      z="-0.11"
+      radius="0.04"
+      width="0.03"/>
+
+  <!-- REAR CASTER -->
+
+  <xacro:wheel
+      name="rear_caster"
+      x="-0.25"
+      y="0"
+      z="-0.11"
+      radius="0.04"
+      width="0.03"/>
+
+  <!-- ================================================= -->
+  <!-- ARM                                               -->
+  <!-- ================================================= -->
+
+  <xacro:robot_arm/>
+
+  <!-- ================================================= -->
+  <!-- SENSORS                                           -->
+  <!-- ================================================= -->
+
+  <xacro:camera_sensor/>
+  <xacro:lidar_sensor/>
+  <xacro:imu_sensor/>
+
+  <!-- ================================================= -->
+  <!-- GAZEBO JOINT STATE PUBLISHER                      -->
+  <!-- ================================================= -->
+
+  <gazebo>
+
+    <plugin
+        filename="libignition-gazebo-joint-state-publisher-system.so"
+        name="ignition::gazebo::systems::JointStatePublisher"/>
+
+  </gazebo>
+
+  <!-- ================================================= -->
+  <!-- GAZEBO POSE PUBLISHER                             -->
+  <!-- ================================================= -->
+
+  <gazebo>
+
+    <plugin
+        filename="libignition-gazebo-pose-publisher-system.so"
+        name="ignition::gazebo::systems::PosePublisher"/>
+
+  </gazebo>
+
+  <!-- ================================================= -->
+  <!-- ROS2 CONTROL                                      -->
+  <!-- ================================================= -->
+
+  <ros2_control name="RobotSystem"
+                type="system">
+
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <!-- LEFT WHEEL -->
+
+    <joint name="left_wheel_joint">
+
+      <command_interface name="velocity"/>
+
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+
+    </joint>
+
+    <!-- RIGHT WHEEL -->
+
+    <joint name="right_wheel_joint">
+
+      <command_interface name="velocity"/>
+
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+
+    </joint>
+
+    <!-- ARM -->
+
+    <joint name="arm_joint">
+
+      <command_interface name="position"/>
+
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+
+    </joint>
+
+  </ros2_control>
+
+  <!-- ================================================= -->
+  <!-- GZ ROS2 CONTROL PLUGIN                            -->
+  <!-- ================================================= -->
+
+  <gazebo>
+
+    <plugin
+        filename="libgz_ros2_control-system.so"
+        name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+
+      <parameters>
+        /home/dhaniksha/robot_ws/src/robot_sim/config/controllers.yaml
+      </parameters>
+
+    </plugin>
+
+  </gazebo>
+
+</robot>
